@@ -1,0 +1,22 @@
+name: Run Tests
+
+on: [push, pull_request]  # triggers when code is pushed or PR is opened
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Step 1: OS
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # gets your repo code
+
+    - name: Set up Python
+      uses: actions/setup-python@v4  # Step 2: Python
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Step 3: dependencies
+
+    - name: Run tests
+      run: pytest  # Step 4: tests
